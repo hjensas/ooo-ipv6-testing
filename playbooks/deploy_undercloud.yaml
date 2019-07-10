@@ -63,7 +63,6 @@
     with_items:
       - overcloud
       - undercloud.conf
-      - containers-prepare-parameter.yaml
   - name: Create images directory
     file:
       dest: "{{ ansible_env.HOME }}/images"
@@ -78,6 +77,7 @@
     register: build_images
   - name: Install Undercloud
     shell:
+      openstack tripleo container image prepare default   --local-push-destination   --output-env-file ~/containers-prepare-parameter.yaml
       openstack undercloud install
   - name: Build image - check async task
     async_status:
