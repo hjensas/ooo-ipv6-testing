@@ -14,8 +14,8 @@
         NAME=eth2
         DEVICE=eth2
         BOOTPROTO=static
-        IPADDR={{ undercloud_public_ip }}
-        PREFIX=24
+        IPV6INIT=yes
+        IPV6ADDR={{ undercloud_public_ip }}/64
         MTU=1450
       dest: /etc/sysconfig/network-scripts/ifcfg-eth2
   - name: Bring up public interface
@@ -24,7 +24,7 @@
   - name: Install tripleo repos rpm
     become: yes
     yum:
-      name: https://trunk.rdoproject.org/centos7/current/python2-tripleo-repos-0.0.1-0.20190626123453.5ed935f.el7.noarch.rpm 
+      name: https://trunk.rdoproject.org/centos7/current/python2-tripleo-repos-0.0.1-0.20190709031829.30712d9.el7.noarch.rpm
       state: present
   - name: Set up tripleo repos
     become: yes
@@ -47,8 +47,8 @@
         - python-tripleoclient
   - name: Git checkout ooo-bp-tripleo-routed-networks-templates-testing
     git:
-      repo: https://github.com/hjensas/ooo-bp-tripleo-routed-networks-templates-testing.git
-      dest: "{{ ansible_env.HOME }}/ooo-bp-tripleo-routed-networks-templates-testing"
+      repo: https://github.com/hjensas/ooo-ipv6-testing.git
+      dest: "{{ ansible_env.HOME }}/ooo-ipv6-testing"
   - name: Git checkout tripleo-heat-templates
     git:
       repo: https://opendev.org/openstack/tripleo-heat-templates.git
@@ -57,7 +57,7 @@
       # version: FETCH_HEAD
   - name: Create symlinks
     file:
-      src: "{{ ansible_env.HOME }}/ooo-bp-tripleo-routed-networks-templates-testing/{{ item }}"
+      src: "{{ ansible_env.HOME }}/ooo-ipv6-testing/{{ item }}"
       dest: "{{ ansible_env.HOME }}/{{ item }}"
       state: link
     with_items:
