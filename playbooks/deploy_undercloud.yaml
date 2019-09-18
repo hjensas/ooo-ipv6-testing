@@ -57,8 +57,8 @@
         - python-tripleoclient
   - name: Git checkout ooo-bp-tripleo-routed-networks-templates-testing
     git:
-      repo: https://github.com/hjensas/ooo-bp-tripleo-routed-networks-templates-testing.git
-      dest: "{{ ansible_env.HOME }}/ooo-bp-tripleo-routed-networks-templates-testing"
+      repo: https://github.com/hjensas/ooo-ipv6-testing.git
+      dest: "{{ ansible_env.HOME }}/ooo-ipv6-testing"
   - name: Git checkout tripleo-heat-templates
     git:
       repo: https://opendev.org/openstack/tripleo-heat-templates.git
@@ -67,7 +67,7 @@
       # version: FETCH_HEAD
   - name: Create symlinks
     file:
-      src: "{{ ansible_env.HOME }}/ooo-bp-tripleo-routed-networks-templates-testing/{{ item }}"
+      src: "{{ ansible_env.HOME }}/ooo-ipv6-testing/{{ item }}"
       dest: "{{ ansible_env.HOME }}/{{ item }}"
       state: link
     with_items:
