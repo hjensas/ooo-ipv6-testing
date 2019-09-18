@@ -21,7 +21,7 @@ EOF
 
 scp -o StrictHostKeyChecking=no nodes.json centos@$OVB_UNDERCLOUD:~/instackenv.json
 
-DEPLOY_UNDERCLOUD="ansible-playbook -i inventory.ini ../ooo-bp-tripleo-routed-networks-templates-testing/playbooks/deploy_undercloud.yaml"
+DEPLOY_UNDERCLOUD="ansible-playbook -i inventory.ini ../ooo-ipv6-testing/playbooks/deploy_undercloud.yaml"
 DEPLOY_OVERCLOUD="Log into undercloud ($OVB_UNDERCLOUD) and run command: bash ~/overcloud/deploy_overcloud.sh"
 echo "###############################################"
 echo -e "Undercloud floating IP:\n\t$OVB_UNDERCLOUD"
