@@ -30,6 +30,7 @@
         - git
         - tmux
         - vim-enhanced
+        - tcpdump
   - name: Git checkout tripleo-repos
     git:
       repo: https://opendev.org/openstack/tripleo-repos.git
