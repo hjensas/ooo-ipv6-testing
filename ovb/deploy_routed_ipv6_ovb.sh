@@ -1,9 +1,11 @@
 # Deploy ovb lab
 ./bin/deploy.py \
-	--env env-ipv6-lab.yaml \
+	--env env-routed-lab.yaml \
 	--quintupleo \
 	--env environments/all-networks.yaml \
-	--env env-ipv6.yaml --poll
+	--env env-ipv6-routed.yaml \
+	--role env-role-leaf1.yaml \
+	--role env-role-leaf2.yaml
 
 
 # Build nodes json
