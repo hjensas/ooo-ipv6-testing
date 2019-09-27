@@ -8,7 +8,7 @@
 # description: |
 #   Basic configuration options needed for all OVB environments
 parameter_defaults:
-  baremetal_flavor: m1.small
+  baremetal_flavor: m1.large
   baremetal_image: ipxe-boot-ipv6
   baremetal_prefix: baremetal
   bmc_flavor: m1.small
