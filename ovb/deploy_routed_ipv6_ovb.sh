@@ -20,6 +20,9 @@ cat << EOF > inventory.ini
 $OVB_UNDERCLOUD ansible_user=centos ansible_ssh_extra_args='-o StrictHostKeyChecking=no' undercloud_public_ip=$OVB_UNDERCLOUD_PUBLIC
 EOF
 
+ansible-playbook -i inventory.ini ../ooo-ipv6-testing/playbooks/ssh_hardening.yaml
+
+
 scp -o StrictHostKeyChecking=no nodes.json centos@$OVB_UNDERCLOUD:~/instackenv.json
 
 DEPLOY_UNDERCLOUD="ansible-playbook -i inventory.ini ../ooo-ipv6-testing/playbooks/deploy_undercloud.yaml"
