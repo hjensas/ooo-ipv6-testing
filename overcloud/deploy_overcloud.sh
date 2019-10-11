@@ -4,6 +4,7 @@ source /home/centos/stackrc
 cd /home/centos
 
 openstack overcloud deploy \
+  --stack-only \
   --templates /home/centos/tripleo-heat-templates \
   -r /home/centos/overcloud/ipv6_roles_data.yaml \
   -n /home/centos/overcloud/ipv6_network_data.yaml \
