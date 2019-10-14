@@ -75,6 +75,7 @@
       - overcloud
       - undercloud.conf
       - set_capabilities.sh
+      - ipv6-patches.sh
   - name: Create images directory
     file:
       dest: "{{ ansible_env.HOME }}/images"
@@ -84,34 +85,38 @@
       cd {{ ansible_env.HOME }}/images
       export DIB_YUM_REPO_CONF="/etc/yum.repos.d/delorean*"
       openstack overcloud image build
-    # async: 1800
-    # poll: 0
-    # register: build_images
+    async: 1800
+    poll: 0
+    register: build_images
+  - name: Run script to patch stuff
+    become: yes
+    shell: |
+      bash {{ ansible_env.HOME }}/ipv6-patches.sh
   - name: Install Undercloud
     shell:
       openstack undercloud install
-  # - name: Build image - check async task
-  #   async_status:
-  #     jid: "{{ build_images.ansible_job_id }}"
-  #   register: build_image_result
-  #   until: build_image_result.finished
-  #   retries: 100
-  #   delay: 10
+  - name: Build image - check async task
+    async_status:
+      jid: "{{ build_images.ansible_job_id }}"
+    register: build_image_result
+    until: build_image_result.finished
+    retries: 100
+    delay: 10
   - name: Upload overcloud images
     shell: |
       source {{ ansible_env.HOME }}/stackrc
       cd {{ ansible_env.HOME }}/images
       openstack overcloud image upload
-  # - name: Import nodes
-  #   shell: |
-  #     source {{ ansible_env.HOME }}/stackrc
-  #     openstack overcloud node import instackenv.json
-  # - name: Introspect and provide nodes
-  #   shell: |
-  #     source {{ ansible_env.HOME }}/stackrc
-  #     openstack overcloud node introspect --all-manageable --provide
-  # - name: Create flavors and set node capabilities
-  #   shell: |
-  #     source {{ ansible_env.HOME }}/stackrc
-  #     bash {{ ansible_env.HOME }}/set_capabilities.sh
+  - name: Import nodes
+    shell: |
+      source {{ ansible_env.HOME }}/stackrc
+      openstack overcloud node import instackenv.json
+  - name: Introspect and provide nodes
+    shell: |
+      source {{ ansible_env.HOME }}/stackrc
+      openstack overcloud node introspect --all-manageable --provide
+  - name: Create flavors and set node capabilities
+    shell: |
+      source {{ ansible_env.HOME }}/stackrc
+      bash {{ ansible_env.HOME }}/set_capabilities.sh
 
