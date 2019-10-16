@@ -31,6 +31,8 @@
         - tmux
         - vim-enhanced
         - tcpdump
+        - python-setuptools
+        - python-requests
   - name: Git checkout tripleo-repos
     git:
       repo: https://opendev.org/openstack/tripleo-repos.git
