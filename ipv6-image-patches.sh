@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 #
 # Patch cloud-init in built image
 #

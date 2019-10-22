@@ -34,6 +34,7 @@
         - tcpdump
         - python-setuptools
         - python-requests
+        - libguestfs-tools
   - name: Git checkout tripleo-repos
     git:
       repo: https://opendev.org/openstack/tripleo-repos.git
@@ -79,6 +80,7 @@
       - undercloud.conf
       - set_capabilities.sh
       - ipv6-patches.sh
+      - ipv6-image-patches.sh
   - name: Create images directory
     file:
       dest: "{{ ansible_env.HOME }}/images"
