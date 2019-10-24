@@ -99,6 +99,7 @@
       bash {{ ansible_env.HOME }}/ipv6-patches.sh
   - name: Install Undercloud
     shell:
+      openstack tripleo container image prepare default --local-push-destination --output-env-file {{ ansible_env.HOME }}/containers-prepare-parameter.yaml
       openstack undercloud install
   - name: Build image - check async task
     async_status:
