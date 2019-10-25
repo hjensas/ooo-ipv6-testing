@@ -5,7 +5,7 @@ parameter_defaults:
 
   provision_net_ip_version: 6
   provision_net_cidr: fd12:3456:789a:1::/64
-  radvd_provision_address: fd12:3456:789a:1::fffd
+  radvd_provision_address: fd12:3456:789a:1::fffe
 
   public_net_ip_version: 6
   public_net_cidr: fd12:3456:789a:ffff::/64
