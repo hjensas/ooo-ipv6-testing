@@ -99,6 +99,14 @@
   - name: Install Undercloud
     shell: |
       openstack tripleo container image prepare default --local-push-destination --output-env-file {{ ansible_env.HOME }}/containers-prepare-parameter.yaml
+      cat << EOF >> {{ ansible_env.HOME }}/containers-prepare-parameter.yaml
+          modify_role: tripleo-modify-image
+          modify_append_tag: "-updated"
+          modify_vars:
+            tasks_from: yum_update.yml
+            compare_host_packages: true
+            yum_repos_dir_path: /etc/yum.repos.d
+      EOF
       openstack undercloud install
   - name: Run script to patch image
     become: yes
