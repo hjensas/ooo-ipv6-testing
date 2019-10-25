@@ -35,6 +35,8 @@
         - python-setuptools
         - python-requests
         - libguestfs-tools
+        - patch
+        - patchutils
   - name: Git checkout tripleo-repos
     git:
       repo: https://opendev.org/openstack/tripleo-repos.git
