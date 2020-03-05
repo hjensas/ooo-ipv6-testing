@@ -37,6 +37,7 @@
         - libguestfs-tools
         - patch
         - patchutils
+        - createrepo_c
   - name: Git checkout tripleo-repos
     git:
       repo: https://opendev.org/openstack/tripleo-repos.git
@@ -96,6 +97,11 @@
     become: yes
     shell: |
       bash {{ ansible_env.HOME }}/ipv6-patches.sh
+  - name: Create local repo directory
+    become: yes
+    file:
+      dest: /opt/local_repo
+      state: directory
   - name: Install Undercloud
     shell: |
       openstack tripleo container image prepare default --local-push-destination --output-env-file {{ ansible_env.HOME }}/containers-prepare-parameter.yaml
