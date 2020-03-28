@@ -17,8 +17,8 @@
         - tmux
         - vim-enhanced
         - tcpdump
-        - python-setuptools
-        - python-requests
+        - python3-setuptools
+        - python3-requests
         - libguestfs-tools
         - patch
         - patchutils
