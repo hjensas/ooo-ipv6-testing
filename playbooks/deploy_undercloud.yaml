@@ -13,6 +13,7 @@
       name: "{{ packages }}"
     vars:
       packages:
+        - python3
         - git
         - tmux
         - vim-enhanced
@@ -24,6 +25,11 @@
         - patchutils
         - createrepo_c
         - network-scripts
+  - name: Ensure /etc/sysconfig/network-scripts/ifcfg-ens3 is GONE
+    become: yes
+    file:
+      path: /etc/sysconfig/network-scripts/ifcfg-ens3
+      state: absent
   - name: Disable NetworkManager.service
     become: yes
     systemd:
@@ -56,7 +62,7 @@
     git:
       repo: https://opendev.org/openstack/tripleo-repos.git
       dest: "{{ ansible_env.HOME }}/tripleo-repos"
-  - name: Install tripleo repos rpm
+  - name: Install tripleo repos - pip
     become: yes
     shell: |
       cd {{ ansible_env.HOME }}/tripleo-repos
@@ -64,7 +70,7 @@
   - name: Set up tripleo repos
     become: yes
     shell:
-      tripleo-repos current-tripleo-dev
+      /usr/local/bin/tripleo-repos current-tripleo-dev
   - name: upgrade all packages
     become: yes
     yum:
