@@ -31,11 +31,11 @@
       enabled: no
       name: NetworkManager.service
   - name: Enable network.service
-      become: yes
-      systemd:
-        state: started
-        enabled: yes
-        name: network.service
+    become: yes
+    systemd:
+      state: started
+      enabled: yes
+      name: network.service
   - name: Set up public interface
     become: yes
     copy:
