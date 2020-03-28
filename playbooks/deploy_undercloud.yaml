@@ -77,6 +77,7 @@
       name: '*'
       state: latest
   - name: Unconditionally reboot the machine with all defaults
+    become: yes
     reboot:
   - name: Install tripleo client
     become: yes
