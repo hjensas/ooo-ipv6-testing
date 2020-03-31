@@ -27,5 +27,5 @@ parameter_defaults:
 resource_registry:
   OS::OVB::UndercloudNetworks: templates/undercloud-networks.yaml
   OS::OVB::BaremetalNetworks: templates/baremetal-networks-all.yaml
-  OS::OVB::RoouterAdvertisementDaemon: templates/ipv6-radvd.yaml
+  OS::OVB::RouterAdvertisementDaemon: templates/ipv6-radvd.yaml
 
