@@ -10,6 +10,10 @@ Set up OVB environment
   virtualenv ~/ovb-ipv6-lab
   source ~/ovb-ipv6-lab/bin/activate
   git clone https://opendev.org/openstack/openstack-virtual-baremetal.git ~/ovb-ipv6-lab/openstack-virtual-baremetal
+  cd ~/ovb-ipv6-lab/openstack-virtual-baremetal
+  git fetch https://review.opendev.org/openstack/openstack-virtual-baremetal refs/changes/77/713077/1 && git checkout FETCH_HEAD
+  git switch -c ref-713077
+  cd
   pip install ~/ovb-ipv6-lab/openstack-virtual-baremetal
   pip install python-openstackclient
   pip install ansible
