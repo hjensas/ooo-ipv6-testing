@@ -8,8 +8,7 @@
 
 # Build nodes json
 ./bin/build-nodes-json \
-	--env env-routed-lab.yaml \
-	--physical_network
+	--env env-ipv6-lab.yaml
 
 OVB_UNDERCLOUD=$(openstack stack show quintupleo -f json -c outputs | jq '.outputs[0].output_value' | sed s/'"'//g)
 OVB_UNDERCLOUD_PUBLIC=$(openstack server show undercloud -f json -c addresses | jq '.addresses' | sed s/.*public=// | sed s/\;.*// | sed s/'"'//g)
